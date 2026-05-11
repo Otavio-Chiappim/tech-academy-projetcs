@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Challenge</title>
+
+    <!-- This imports the jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        #box {
+            width: 300px;
+            padding: 20px;
+            background-color: lightblue;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This button triggers the jQuery click event -->
+    <button id="toggleButton">Show / Hide Box</button>
+
+    <!-- This is the box that will fade in and out -->
+    <div id="box">
+        <h2>jQuery is working!</h2>
+        <p>This box uses a jQuery effect.</p>
+    </div>
+
+    <script>
+        // Wait until the page loads
+        $(document).ready(function() {
+
+            // jQuery click event
+            $("#toggleButton").click(function() {
+
+                // jQuery fadeToggle effect
+                $("#box").fadeToggle();
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
