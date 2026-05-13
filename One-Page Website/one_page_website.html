@@ -9,12 +9,12 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            background-color: #f4f4f4;
             text-align: center;
         }
 
         nav {
-            background-color: black;
+            background-color: #333;
             padding: 15px;
         }
 
@@ -26,26 +26,26 @@
         }
 
         section {
-            padding: 40px;
+            padding: 40px 20px;
         }
 
         .gallery img {
-            width: 30%;
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
             margin: 10px;
-            border-radius: 10px;
             cursor: pointer;
-            transition: 0.3s;
+            border-radius: 8px;
         }
 
         .gallery img:hover {
             opacity: 0.8;
         }
 
-        /* Lightbox */
-        .modal {
+        .lightbox {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             padding-top: 60px;
             left: 0;
             top: 0;
@@ -54,25 +54,60 @@
             background-color: rgba(0,0,0,0.9);
         }
 
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
+        .lightbox img {
+            max-width: 80%;
+            max-height: 75%;
+            border-radius: 8px;
         }
 
         .close {
             position: absolute;
             top: 20px;
-            right: 35px;
+            right: 40px;
             color: white;
             font-size: 40px;
             cursor: pointer;
         }
 
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            color: white;
+            font-size: 45px;
+            font-weight: bold;
+            padding: 16px;
+            background: none;
+            border: none;
+        }
+
+        .prev {
+            left: 30px;
+        }
+
+        .next {
+            right: 30px;
+        }
+
+        form input,
+        form textarea {
+            display: block;
+            width: 80%;
+            max-width: 400px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
         footer {
-            padding: 20px;
-            background: #eee;
+            background-color: #333;
+            color: white;
+            padding: 15px;
         }
     </style>
 </head>
@@ -80,61 +115,61 @@
 <body>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Gallery</a>
-        <a href="#">Video</a>
-        <a href="#">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#video">Video</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <section>
+    <section id="home">
         <h1>Welcome to My Website</h1>
         <p>This is my first one-page website built with HTML.</p>
     </section>
 
-    <section>
+    <section id="gallery">
         <h2>Gallery</h2>
 
         <div class="gallery">
-            <img src="https://picsum.photos/id/1015/400/300" onclick="openModal(this)">
-            <img src="https://picsum.photos/id/1016/400/300" onclick="openModal(this)">
-            <img src="https://picsum.photos/id/1018/400/300" onclick="openModal(this)">
+            <img src="images/image1.jpg" onclick="openLightbox(0)" alt="Image 1">
+            <img src="images/image2.jpg" onclick="openLightbox(1)" alt="Image 2">
+            <img src="images/image3.jpg" onclick="openLightbox(2)" alt="Image 3">
+            <img src="images/image4.jpg" onclick="openLightbox(3)" alt="Image 4">
         </div>
     </section>
 
-    <section>
+    <section id="video">
         <h2>My Video</h2>
-
-        <iframe width="560" height="315"
-        src="https://www.youtube.com/embed/tgbNymZ7vqY">
+        <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player" 
+            allowfullscreen>
         </iframe>
     </section>
 
-    <section>
+    <section id="contact">
         <h2>Contact Me</h2>
 
         <form>
-            <label>Name:</label><br><br>
-            <input type="text"><br><br>
-
-            <label>Email:</label><br><br>
-            <input type="email"><br><br>
-
-            <label>Message:</label><br><br>
-            <textarea rows="5"></textarea><br><br>
-
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Message"></textarea>
             <button type="submit">Send</button>
         </form>
     </section>
 
-    <footer>
-        © 2026 My Website
-    </footer>
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="lightbox-img">
+        <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+
+        <img id="lightbox-img" src="" alt="Large Image">
+
+        <button class="next" onclick="changeImage(1)">&#10095;</button>
     </div>
+
+    <footer>
+        <p>&copy; 2026 My Website</p>
+    </footer>
 
     <script src="JS/one_page_website.js"></script>
 
